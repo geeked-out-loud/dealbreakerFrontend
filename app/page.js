@@ -7,6 +7,7 @@ import Waves from '../Waves/Waves';
 export default function Page() {
   const [fileName, setFileName] = useState("");
   const [productSearchInput, setProductSearchInput] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
 
   const onDrop = (acceptedFiles) => {
     if (acceptedFiles.length > 0) {
@@ -32,12 +33,11 @@ export default function Page() {
   };
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
-
-  // State for showing the uploaded file name
   const [showFileName, setShowFileName] = useState(false);
 
   // Show file name for 10 seconds when fileName changes
   useEffect(() => {
+    setShowPopup(true); 
     if (fileName) {
       setShowFileName(true);
       const timer = setTimeout(() => setShowFileName(false), 5000);
@@ -100,6 +100,85 @@ export default function Page() {
       {fileName && (
         <div className={`file-name${showFileName ? " visible" : ""}`}>
           Uploaded File: {fileName}
+        </div>
+      )}
+
+      {showPopup && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: "rgba(0,0,0,0.7)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 999,
+          }}
+          onClick={() => setShowPopup(false)}
+        >
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "500px",
+              margin: "0 auto",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "30px",
+              fontFamily: "'Arial', sans-serif",
+              backgroundColor: "#c2c2c2",
+              borderRadius: "12px",
+              overflow: "auto",
+              maxHeight: "90vh",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2
+              style={{
+                width: "100%",
+                margin: "0 0 2px 0",
+                fontSize: "1.8rem",
+                fontWeight: "bold",
+                color: "#000d18",
+                textAlign: "left",
+              }}
+            >
+              Welcome to Dealbreaker!
+            </h2>
+            <p
+              style={{
+                color: "#000d18",
+                width: "100%",
+                fontSize: "1rem",
+                marginBottom: "25px",
+              }}
+            >{/* eslint-disable react/no-unescaped-entities */}
+              <b>This is a Mockup for the Frontend of the Dealbreaker app. </b><br /><br />
+              The app is currently in development and not yet available for use. The purpose of this mock is to develop and test User Interfaces for the app.<br /><br />
+              <b>Note:</b> This is not currently tailored for vertical screens, we're working on those currently. The app is not yet available for use. Please do not share any personal information.
+            </p>
+            <button
+              style={{
+                width: "100%",
+                padding: "14px",
+                fontSize: "1rem",
+                fontWeight: "bold",
+                backgroundColor: "#000d18",
+                color: "#c2c2c2",
+                border: "none",
+                borderRadius: "6px",
+                cursor: "pointer",
+                transition: "background-color 0.3s ease",
+              }}
+              onClick={() => setShowPopup(false)}
+            >
+              Close
+            </button>
+          </div>
         </div>
       )}
 
