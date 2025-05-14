@@ -1,10 +1,8 @@
 "use client";
 import Image from 'next/image';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Waves from '../Waves/Waves';
-
 
 export default function Page() {
   const [fileName, setFileName] = useState("");
@@ -118,22 +116,25 @@ export default function Page() {
 
         .joined-boxes {
           display: flex;
-          background-color:rgba(11, 11, 11, 0.85);
-          gap:0; /* Remove gap to join edges */
-          z-index: 1;
+          background-color: rgba(11, 11, 11, 0.85);
+          gap: 0;
+          width: auto;
         }
 
         .box {
-          border: 2px solid #c2c2c2;
-          background: transparent;
+          border: 0.125rem solid #c2c2c2;
+          background: rgba(11, 11, 11, 0.70);
           display: flex;
+          justify-content: center;
+          align-items: center;
           flex-direction: column;
           align-items: center;
-          padding: 32px;
+          padding: 2rem;
+          z-index: 1;
         }
 
         .left-box {
-          border-radius: 16px; /* Rounded corners for left box */
+          border-radius: 1rem;
           border-right: none;
         }
 
@@ -142,8 +143,8 @@ export default function Page() {
           justify-content: center;
           align-items: center;
           padding: 0;
-          width: 420px;
-          border-radius: 16px;
+          width: 30vw;
+          border-radius: 1rem;
         }
 
         .content {
@@ -151,37 +152,39 @@ export default function Page() {
           flex-direction: column;
           align-items: center;
           width: 100%;
-          padding: 24px 32px;
+          padding: 1.5rem 2rem;
         }
 
         .inner {
-          width: 240px;
-          height: 240px;
-          border: 2px dashed #c2c2c2;
-          border-radius: 16px;
+          width: 20vw;
+          max-width: 15rem;
+          height: 20vw;
+          max-height: 15rem;
+          border: 0.125rem dashed #c2c2c2;
+          border-radius: 1rem;
           display: flex;
           justify-content: center;
           align-items: center;
-          margin-bottom: 24px;
+          margin-bottom: 1.5rem;
           cursor: pointer;
           transition: transform 0.4s ease, box-shadow 0.3s ease;
-          box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+          box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.4);
         }
 
         .inner:hover {
           background-color: rgba(194, 194, 194, 0.1);
           transform: scale(1.02);
-          box-shadow: 0 12px 24px rgba(0,0,0,0.6);
+          box-shadow: 0 0.75rem 1.5rem rgba(0,0,0,0.6);
         }
 
         .button {
           width: 100%;
-          height: 65px;
+          height: 4rem;
           border: none;
-          border-radius: 10px;
+          border-radius: 0.625rem;
           background-color: #c2c2c2;
           color: #161616;
-          font-size: 18px;
+          font-size: 1.125rem;
           font-weight: bold;
           cursor: pointer;
           text-align: center;
@@ -190,38 +193,37 @@ export default function Page() {
         .button:hover {
           opacity: 0.9;
           transform: scale(1.02);
-          box-shadow: 0 12px 24px rgba(0,0,0,0.6);
+          box-shadow: 0 0.75rem 1.5rem rgba(0,0,0,0.6);
         }
 
         .input {
           width: 100%;
-          height: 65px;
-          padding: 8px 12px;
-          border: 3px solid #c2c2c2;
-          border-radius: 10px;
+          height: 4rem;
+          padding: 0.5rem 0.75rem;
+          border: 0.1875rem solid #c2c2c2;
+          border-radius: 0.625rem;
           background: transparent;
           color: #c2c2c2;
-          font-size: 20px;
-          margin-bottom: 16px;
+          font-size: 1.25rem;
+          margin-bottom: 1rem;
           text-align: left;
         }
 
         .input:focus {
           outline: none;
-          box-shadow: 0 0 0 2px rgba(194, 194, 194, 0.5);
+          box-shadow: 0 0 0 0.125rem rgba(194, 194, 194, 0.5);
           transform: scale(1.02);
-          box-shadow: 0 12px 24px rgba(0,0,0,0.6);
+          box-shadow: 0 0.75rem 1.5rem rgba(0,0,0,0.6);
         }
 
         .file-name {
-          background-color: rgba(0, 0, 0);
-          padding: 10px 20px;
-          border-radius: 10px;
-          font-size: 12px;
+          background-color: rgba(0, 0, 0, 0.8);
+          padding: 0.625rem 1.25rem;
+          border-radius: 0.625rem;
+          font-size: 1rem;
           position: absolute;
-          bottom: 20px;
+          bottom: 2vh;
           color: #c2c2c2;
-          font-size: 16px;
           opacity: 0;
           transition: opacity 1s;
           pointer-events: none;
